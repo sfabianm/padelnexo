@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle jugador</title>
+
+    <link rel="stylesheet" th:href="@{/css/padelnexo.css}">
+</head>
+<body>
+
+<h1>Detalle del jugador</h1>
+
+<p>
+    <strong>Nombre:</strong>
+    <span th:text="${jugador.nombre}"></span>
+</p>
+
+<p>
+    <strong>Nivel:</strong>
+    <span th:text="${jugador.nivel}"></span>
+</p>
+
+<p>
+    <strong>Posición:</strong>
+    <span th:text="${jugador.posicion}"></span>
+</p>
+
+<p>
+    <strong>Zona:</strong>
+    <span th:text="${jugador.zona}"></span>
+</p>
+
+<p>
+    <strong>Partidos jugados:</strong>
+    <span th:text="${jugador.partidosJugados}"></span>
+</p>
+
+<p>
+    <strong>Victorias:</strong>
+    <span th:text="${jugador.victorias}"></span>
+</p>
+
+<p>
+    <strong>Porcentaje de victorias:</strong>
+    <span th:text="${#numbers.formatDecimal(jugador.porcentajeVictorias,1,2)}"></span>%
+</p>
+
+<p>
+    <a th:href="@{/jugadores}">
+        Volver al listado
+    </a>
+</p>
+
+</body>
+</html>

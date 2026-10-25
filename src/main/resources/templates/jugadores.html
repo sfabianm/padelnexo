@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Jugadores</title>
+
+    <link rel="stylesheet" th:href="@{/css/padelnexo.css}">
+</head>
+<body>
+
+<h1>Listado de jugadores</h1>
+
+<p>
+    <a th:href="@{/jugadores}"
+       th:classappend="${nivel == null ? 'activo' : ''}">
+        Todos
+    </a>
+
+    <span th:each="n : ${niveles}">
+        |
+        <a th:href="@{/jugadores(nivel=${n})}"
+           th:text="${n}"
+           th:classappend="${nivel == n ? 'activo' : ''}">
+        </a>
+    </span>
+</p>
+
+<p>
+    Total jugadores:
+    <strong th:text="${#lists.size(jugadores)}"></strong>
+</p>
+
+<div th:if="${#lists.isEmpty(jugadores)}">
+    No hay jugadores.
+</div>
+
+<ul>
+
+    <li th:each="jugador : ${jugadores}"
+        th:classappend="${jugador.porcentajeVictorias >= 60 ? 'destacado' : ''}">
+
+        <a th:href="@{/jugadores/{id}(id=${jugador.id})}">
+            <span th:text="${jugador.nombre}"></span>
+        </a>
+
+        -
+
+        <span th:text="${jugador.nivel}"></span>
+
+        -
+
+        <span th:text="${jugador.zona}"></span>
+
+        -
+
+        <span th:text="${#numbers.formatDecimal(jugador.porcentajeVictorias,1,2)}"></span>%
+    </li>
+
+</ul>
+
+</body>
+</html>
